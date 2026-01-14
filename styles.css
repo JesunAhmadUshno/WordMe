@@ -17,6 +17,12 @@
   border-bottom: 1px solid #eee;
   padding-bottom: 5px;
   margin-bottom: 10px;
+  cursor: move; /* <--- This changes the mouse icon to a 'move' icon */
+  user-select: none; /* Prevents highlighting text while dragging */
+  background-color: #f9f9f9; /* Subtle background to show it's a header */
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  margin: -15px -15px 10px -15px; /* Aligns header with the edges of the box */
 }
 
 .wm-phonetic {
@@ -44,4 +50,49 @@
   cursor: pointer;
   float: right;
   margin-top: 5px;
+}
+
+#wm-play-audio {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 50%; /* Makes it a circle */
+  cursor: pointer;
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+#wm-play-audio:hover {
+  background-color: #e6f7ff;
+  border-color: #1890ff;
+}   
+
+.wm-lang-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #666;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+#wm-lang-select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 12px;
+  background: white;
+  cursor: pointer;
+  outline: none;
+}
+
+#wm-lang-select:hover {
+  border-color: #888;
 }

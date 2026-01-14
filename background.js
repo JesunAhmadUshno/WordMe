@@ -61,3 +61,25 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       });
   }
 });
+
+// ... (Your existing code handles the Right Click) ...
+
+// NEW: Listen for "Translate Only" requests from the popup dropdown
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "fetchTranslation") {
+    const { word, targetLang } = request;
+    
+    // Fetch only the translation
+    fetch(`https://api.mymemory.translated.net/get?q=${word}&langpair=en|${targetLang}`)
+      .then(res => res.json())
+      .then(data => {
+        sendResponse({ success: true, data: data });
+      })
+      .catch(error => {
+        console.error("Translation Error:", error);
+        sendResponse({ success: false });
+      });
+
+    return true; // Keep the message channel open for the async response
+  }
+});
