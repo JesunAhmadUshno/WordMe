@@ -1,0 +1,47 @@
+#word-me-popup {
+  position: fixed;
+  z-index: 99999;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  width: 280px;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  color: #333;
+  font-size: 14px;
+}
+
+.wm-header {
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.wm-phonetic {
+  color: #888;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.wm-trans {
+  background: #e6f7ff;
+  color: #0050b3;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#wm-close {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-top: 5px;
+}
