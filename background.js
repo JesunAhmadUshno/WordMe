@@ -7,69 +7,65 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
+async function injectContent(tab) {
+  if (!tab?.id) return;
+  const url = tab.url || "";
+  if (!url.startsWith("http://") && !url.startsWith("https://")) return;
+
+  await chrome.scripting.insertCSS({ target: { tabId: tab.id }, files: ["styles.css"] }).catch(() => {});
+  await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["content.js"] }).catch(() => {});
+}
+
 // 2. Listen for when the user clicks the menu item
-chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === "wordMeLookup") {
-    // Get the selected text and trim extra spaces
-    const selectedText = info.selectionText.trim();
-    
-    // Notify content script to show "Loading..." bubble
-    // We add .catch() here to prevent the "Receiving end does not exist" error
-    chrome.tabs.sendMessage(tab.id, { action: "loading" }).catch(() => {
-      console.log("Could not send 'loading' message. The user likely needs to refresh the page.");
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+  if (info.menuItemId !== "wordMeLookup") return;
+  if (!info.selectionText || !tab?.id) return;
+
+  const selectedText = info.selectionText.trim();
+  await injectContent(tab);
+
+  chrome.tabs.sendMessage(tab.id, { action: "loading" }).catch(() => {
+    console.log("Could not send 'loading' message. The user likely needs to refresh the page.");
+  });
+
+  const targetLang = "es";  // Change this to 'fr', 'de', 'bn', etc.
+  const sourceLang = "en"; 
+
+  const dictionaryFetch = fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${selectedText}`)
+    .then(res => {
+      if (!res.ok) throw new Error("Word not found");
+      return res.json();
     });
 
-    // --- CONFIGURATION ---
-    const targetLang = "es";  // Change this to 'fr', 'de', 'bn', etc.
-    const sourceLang = "en"; 
-    // ---------------------
+  const translationFetch = fetch(`https://api.mymemory.translated.net/get?q=${selectedText}&langpair=${sourceLang}|${targetLang}`)
+    .then(res => res.json());
 
-    // 3. Prepare the API requests (Dictionary + Translation)
-    const dictionaryFetch = fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${selectedText}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Word not found");
-        return res.json();
+  Promise.allSettled([dictionaryFetch, translationFetch])
+    .then((results) => {
+      const dictionaryResult = results[0].status === 'fulfilled' ? results[0].value : null;
+      const translationResult = results[1].status === 'fulfilled' ? results[1].value : null;
+
+      chrome.tabs.sendMessage(tab.id, { 
+        action: "result", 
+        data: {
+          dictionary: dictionaryResult,
+          translation: translationResult
+        } 
+      }).catch(() => {
+          console.log("Could not send data. The content script is not ready.");
       });
-
-    const translationFetch = fetch(`https://api.mymemory.translated.net/get?q=${selectedText}&langpair=${sourceLang}|${targetLang}`)
-      .then(res => res.json());
-
-    // 4. Execute both requests simultaneously
-    Promise.allSettled([dictionaryFetch, translationFetch])
-      .then((results) => {
-        // Check if Dictionary succeeded
-        const dictionaryResult = results[0].status === 'fulfilled' ? results[0].value : null;
-        
-        // Check if Translation succeeded
-        const translationResult = results[1].status === 'fulfilled' ? results[1].value : null;
-
-        // 5. Send combined data back to content script
-        chrome.tabs.sendMessage(tab.id, { 
-          action: "result", 
-          data: {
-            dictionary: dictionaryResult,
-            translation: translationResult
-          } 
-        }).catch(() => {
-            // This catches the error if the user hasn't refreshed the page yet
-            console.log("Could not send data. The content script is not ready.");
-        });
-      })
-      .catch(error => {
-        console.error("Global Error:", error);
-        chrome.tabs.sendMessage(tab.id, { action: "error" }).catch(() => {}); 
-      });
-  }
+    })
+    .catch(error => {
+      console.error("Global Error:", error);
+      chrome.tabs.sendMessage(tab.id, { action: "error" }).catch(() => {}); 
+    });
 });
 
-// ... (Your existing code handles the Right Click) ...
-
-// NEW: Listen for "Translate Only" requests from the popup dropdown
+// Listen for "Translate Only" requests from the popup dropdown
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "fetchTranslation") {
     const { word, targetLang } = request;
     
-    // Fetch only the translation
     fetch(`https://api.mymemory.translated.net/get?q=${word}&langpair=en|${targetLang}`)
       .then(res => res.json())
       .then(data => {
