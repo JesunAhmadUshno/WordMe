@@ -1,0 +1,57 @@
+/* Word Me additions on top of the Lab OS base (styles.css is the pilot's file, unchanged). */
+.appicon { width: 20px; height: 20px; border-radius: 5px; vertical-align: -5px; margin-right: 6px; }
+.eyebrow { display: flex; align-items: center; }
+input[type=text] { width: 100%; padding: 8px 12px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface-strong); color: var(--text); font: inherit; }
+input[type=text]:focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 45%, transparent); outline-offset: 2px; }
+input.wide { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; }
+
+/* fake web page that hosts the extension popup */
+.fakepage, .inline-popup { color-scheme: light; }
+.fakepage #wm-lang-select { color: #333; width: auto; padding: 2px 5px; border-radius: 4px; font-size: 12px; }
+.fakepage .wm-lang-bar > span { white-space: nowrap; }
+.fakepage { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fbfaf7; color: #1b1915; }
+.browserbar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #efece6; border-bottom: 1px solid rgba(40,30,20,.1); font-size: 12px; color: #6f6a61; }
+.browserbar i { width: 9px; height: 9px; border-radius: 50%; background: #d6d1c8; }
+.browserbar span { margin-left: 10px; background: #fff; border-radius: 6px; padding: 2px 10px; flex: 1; max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pagebody { padding: 20px 20px 28px; min-height: 300px; }
+.pagetext { font-family: var(--serif); font-size: 21px; line-height: 1.45; margin: 0 0 14px; max-width: 56ch; }
+.pagetext mark { background: #b4d2ff; color: inherit; padding: 0 2px; border-radius: 2px; }
+.pagebody #word-me-popup { position: relative; top: auto; left: auto; z-index: auto; margin-left: 12%; max-width: 100%; overflow: hidden; }
+.pagebody #word-me-popup::after { content: ''; display: block; clear: both; }
+.pagebody #word-me-popup .wm-def { overflow-wrap: anywhere; }
+.inline-popup { background: #fff; border: 1px solid #ccc; border-radius: 8px; padding: 12px; font: 14px sans-serif; color: #333; margin-bottom: 8px; overflow-wrap: anywhere; }
+.inline-popup .wm-trans { margin: 0; }
+
+/* code excerpts */
+pre.code { margin: 8px 0 0; padding: 12px 14px; background: #1b1915; border: 1px solid var(--border); color: #e9e4da; border-radius: 10px; font: 500 12px/1.6 'JetBrains Mono', ui-monospace, monospace; overflow-x: auto; white-space: pre; font-variant-ligatures: none; }
+pre.code.small { font-size: 11.5px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 420px; overflow-y: auto; }
+pre.code b { color: #8a8478; font-weight: 500; }
+pre.code .hl { display: block; background: rgba(123, 157, 255, .22); margin: 0 -14px; padding: 0 14px; }
+.tile pre.code { margin-bottom: 8px; }
+
+svg.seq text { font-size: 12px; }
+svg.seq text.lane { fill: var(--text); font-weight: 700; font-size: 13px; }
+.flowgrid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+#perms td:nth-child(2) { white-space: nowrap; }
+
+.plist { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 10px; }
+.plist li { display: grid; gap: 4px; padding-left: 14px; border-left: 2px solid var(--border); }
+.plist li span { color: var(--muted); font-size: 13px; }
+.plist code { justify-self: start; }
+
+.audit { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; }
+.audit li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.audit .pill { justify-content: center; }
+.audit .hint { overflow-wrap: anywhere; }
+
+.bigtrans .num { font-size: 34px; overflow-wrap: anywhere; }
+tr.sel td { background: var(--primary-pale); }
+tbody tr { cursor: default; }
+#langs tbody tr { cursor: pointer; }
+
+@media (max-width: 760px) {
+  .flowgrid, .audit { grid-template-columns: minmax(0, 1fr); }
+  .pagebody { padding: 16px 12px 20px; }
+  .pagebody #word-me-popup { margin-left: 0; }
+  .pagetext { font-size: 18px; }
+}
