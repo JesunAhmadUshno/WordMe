@@ -1,0 +1,151 @@
+{
+ "ref": "master",
+ "head": "0d7946f",
+ "commits": [
+  {
+   "hash": "0d7946f",
+   "date": "2026-01-24",
+   "subject": "Use activeTab injection to reduce host scope",
+   "version": "1.4",
+   "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+   ],
+   "host_permissions": [],
+   "content_script_matches": []
+  },
+  {
+   "hash": "f1e3f0a",
+   "date": "2026-01-24",
+   "subject": "Reduce host access and bump version",
+   "version": "1.3",
+   "permissions": [
+    "contextMenus"
+   ],
+   "host_permissions": [],
+   "content_script_matches": [
+    "http://*/*",
+    "https://*/*"
+   ]
+  },
+  {
+   "hash": "ae1e659",
+   "date": "2026-01-24",
+   "subject": "Remove unused permissions and bump version",
+   "version": "1.2",
+   "permissions": [
+    "contextMenus"
+   ],
+   "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+   ],
+   "content_script_matches": [
+    "<all_urls>"
+   ]
+  },
+  {
+   "hash": "9048ca9",
+   "date": "2026-01-14",
+   "subject": "Add Privacy Policy",
+   "version": "1.1",
+   "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+   ],
+   "host_permissions": [
+    "<all_urls>"
+   ],
+   "content_script_matches": [
+    "<all_urls>"
+   ]
+  },
+  {
+   "hash": "4b8ae2f",
+   "date": "2026-01-14",
+   "subject": "v1.1: Update author to The Trimatrix Lab & fix icons",
+   "version": "1.1",
+   "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+   ],
+   "host_permissions": [
+    "<all_urls>"
+   ],
+   "content_script_matches": [
+    "<all_urls>"
+   ]
+  },
+  {
+   "hash": "053c980",
+   "date": "2026-01-14",
+   "subject": "Merge branch 'master' of https://github.com/JesunAhmadUshno/WordMe",
+   "version": "1.0",
+   "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+   ],
+   "host_permissions": [
+    "<all_urls>"
+   ],
+   "content_script_matches": [
+    "<all_urls>"
+   ]
+  },
+  {
+   "hash": "0f5e534",
+   "date": "2026-01-14",
+   "subject": "Add audio support, draggable popup, and language dropdown",
+   "version": "1.0",
+   "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+   ],
+   "host_permissions": [
+    "<all_urls>"
+   ],
+   "content_script_matches": [
+    "<all_urls>"
+   ]
+  },
+  {
+   "hash": "417fd16",
+   "date": "2026-01-14",
+   "subject": "Add initial README for Word Me extension",
+   "version": "1.0",
+   "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+   ],
+   "host_permissions": [
+    "<all_urls>"
+   ],
+   "content_script_matches": [
+    "<all_urls>"
+   ]
+  },
+  {
+   "hash": "e3835f8",
+   "date": "2026-01-14",
+   "subject": "Initial MVP release: Definition and Translation features",
+   "version": "1.0",
+   "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+   ],
+   "host_permissions": [
+    "<all_urls>"
+   ],
+   "content_script_matches": [
+    "<all_urls>"
+   ]
+  }
+ ]
+}
