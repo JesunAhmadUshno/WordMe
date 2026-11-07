@@ -1,0 +1,20 @@
+{
+  "captured": "2026-11-07",
+  "method": "One-off curl GET, saved byte for byte. Same endpoints background.js calls. Not re-run at build time.",
+  "files": [
+    { "file": "serendipity.dictionary.json", "status": 200, "url": "https://api.dictionaryapi.dev/api/v2/entries/en/serendipity" },
+    { "file": "run.dictionary.json", "status": 200, "url": "https://api.dictionaryapi.dev/api/v2/entries/en/run" },
+    { "file": "wordmeqzx.dictionary.json", "status": 404, "url": "https://api.dictionaryapi.dev/api/v2/entries/en/wordmeqzx" },
+    { "file": "serendipity.es.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|es" },
+    { "file": "serendipity.bn.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|bn" },
+    { "file": "serendipity.fr.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|fr" },
+    { "file": "serendipity.de.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|de" },
+    { "file": "serendipity.hi.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|hi" },
+    { "file": "serendipity.it.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|it" },
+    { "file": "serendipity.ja.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|ja" },
+    { "file": "serendipity.ru.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=serendipity&langpair=en|ru" },
+    { "file": "run.es.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=run&langpair=en|es" },
+    { "file": "rock-and-roll.raw.es.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=rock%20&%20roll&langpair=en|es", "note": "The URL background.js builds today for the selection 'rock & roll' (no encodeURIComponent): the API only receives q=rock%20" },
+    { "file": "rock-and-roll.encoded.es.translation.json", "status": 200, "url": "https://api.mymemory.translated.net/get?q=rock%20%26%20roll&langpair=en%7Ces", "note": "Same selection with encodeURIComponent" }
+  ]
+}
