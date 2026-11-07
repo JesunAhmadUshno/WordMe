@@ -2,7 +2,7 @@
 
 **Word Me** is a lightweight Google Chrome Extension that integrates dictionary definitions, phonetics, and real-time translations directly into the browser's context menu.
 
-![Demo](demo.gif) *(Tip: Record a small screen capture of it working and put it here)*
+Live dashboard: https://jesunahmadushno.github.io/WordMe/ (the popup replayed on recorded API responses, the request flow, permissions history and an engineering audit)
 
 ## 🚀 Features
 * **Instant Definitions:** Fetches data from the Free Dictionary API.
@@ -26,7 +26,12 @@
 ## 🔮 Future Improvements
 * [ ] Add an Options Page to change target languages dynamically.
 * [ ] Add "Save Word" feature to build a personal vocabulary list.
-* [ ] Add text-to-speech audio support.
+* [x] Add pronunciation audio (the popup plays the dictionary's recording when one exists).
+* [ ] Fix the open items in the [engineering review](docs/research-review.md): URL-encode the selection, render API text with textContent, match the manifest icon name to `Icon.png`.
+
+## 🧪 Tests and dashboard
+* `node --test tests/*.test.mjs` runs `background.js` and `content.js` against recorded API responses (no network).
+* `cd site && npm ci && npm run build` checks every dashboard number against the repo files, then builds the page.
 
 ---
 *Created by Jesun Ahmad Ushno*
