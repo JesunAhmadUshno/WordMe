@@ -89,7 +89,7 @@ function Range({ label, value, min, max, step, onChange, show }) {
 export default function App() {
   useReveal();
   return (
-    <div className="wrap">
+    <div className="wrap"><a className="skip" href="#top">Skip to content</a>
       <MenuBar />
       <div className="glow" aria-hidden="true" />
       <Hero />
@@ -103,7 +103,7 @@ export default function App() {
       <Dock />
       <footer>
         Every number on this page is read at build time from <code>manifest.json</code>, the extension's source files, <code>site/fixtures/</code> (API responses recorded {CAPTURED}) and <code>site/src/history.json</code>, and checked by <code>site/src/check.mjs</code>. Nothing calls an API until you press Fetch live.
-      </footer>
+      <nav className="support" aria-label="Support this work"><a href="https://github.com/sponsors/JesunAhmadUshno">Sponsor this work</a><a href="https://github.com/sponsors/JesunAhmadUshno">Donate</a><a href="https://buymeacoffee.com/jesun">Buy Me a Coffee</a><a href="https://calendly.com/jesunahmadushno/30min">Work with me</a></nav></footer>
     </div>
   );
 }
@@ -219,7 +219,7 @@ function Playground() {
   const shown = live ? live.text : word;
 
   return (
-    <section id="play" className="card window reveal" data-title="content.js — popup">
+    <section id="play" className="card window reveal" data-title="content.js - popup">
       <div className="head">
         <div>
           <p className="eyebrow">Popup playground</p>
@@ -274,7 +274,7 @@ function Flow() {
   const srcLines = SRC[cur.file].split('\n');
   const from = Math.max(0, cur.line - 3), excerpt = srcLines.slice(from, cur.line + 2);
   return (
-    <section id="flow" className="card window reveal" data-title="background.js — message flow">
+    <section id="flow" className="card window reveal" data-title="background.js - message flow">
       <p className="eyebrow">Request flow</p>
       <h2>One right-click, {steps.length} steps, two parallel requests.</h2>
       <p className="sub">
@@ -435,7 +435,7 @@ function SafeRendering() {
     return { els: els.map((e) => e.tagName.toLowerCase()), handlers: els.flatMap((e) => [...e.attributes].filter((a) => /^on/i.test(a.name)).map((a) => `${e.tagName.toLowerCase()} ${a.name}`)) };
   }, [transLine]);
   return (
-    <section id="safe" className="card window reveal" data-title="xss_demo — innerHTML vs textContent">
+    <section id="safe" className="card window reveal" data-title="xss_demo - innerHTML vs textContent">
       <p className="eyebrow">Safe-rendering demo</p>
       <h2>Why API text should never go through <em>innerHTML</em>.</h2>
       <p className="sub">
@@ -513,7 +513,7 @@ function Install() {
     ['site/src/check.mjs', 'Known-answer check', 'Runs before every build'],
   ];
   return (
-    <section id="install" className="card window reveal" data-title="README.md — Installation">
+    <section id="install" className="card window reveal" data-title="README.md - Installation">
       <p className="eyebrow">Install</p>
       <h2>Load it unpacked in {steps.length} steps.</h2>
       <ol className="steps" style={{ marginTop: 16 }}>
