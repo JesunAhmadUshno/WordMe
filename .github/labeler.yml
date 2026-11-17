@@ -1,0 +1,15 @@
+extension:
+  - changed-files:
+      - any-glob-to-any-file: ["background.js", "content.js", "styles.css", "manifest.json"]
+tests:
+  - changed-files:
+      - any-glob-to-any-file: ["tests/**"]
+site:
+  - changed-files:
+      - any-glob-to-any-file: ["site/**"]
+docs:
+  - changed-files:
+      - any-glob-to-any-file: ["docs/**", "README.md", "PRIVACY.md"]
+automation:
+  - changed-files:
+      - any-glob-to-any-file: [".github/**"]
